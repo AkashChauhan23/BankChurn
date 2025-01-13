@@ -56,7 +56,7 @@ scaller = StandardScaler()
 x_train = scaller.fit_transform(x_train)
 x_test = scaller.transform(x_test)
 
-pickle_saver('Scaller.pkl', scaller)
+pickle_saver('Scaller', scaller)
 
 model = Sequential([
     Input(shape=[x_train.shape[1],]),
