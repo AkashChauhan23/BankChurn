@@ -37,14 +37,14 @@ if analys:
         'IsActiveMember' : cov_bool.get(memeber),
         'EstimatedSalary' : salary
     }
-    lable_encode = pickler_reader('Genderencoder.pkl')
+    lable_encode = pickler_reader('Gender_encoder.pkl')
     user_input['Gender'] = lable_encode.transform([user_input['Gender']])
     user_input = pd.DataFrame(user_input)
-    one_hot_encode = pickler_reader('Geographyencoder.pkl')
+    one_hot_encode = pickler_reader('Geography_encoder.pkl')
     column_encode = one_hot_encode.transform(user_input[['Geography']]).toarray()
     column_encode_df = pd.DataFrame(column_encode , columns=one_hot_encode.get_feature_names_out(['Geography']))
     user_input = pd.concat([user_input.drop('Geography',axis=1 ) ,column_encode_df ],axis=1)
-    scaller = pickler_reader('scallerencoder .pkl')
+    scaller = pickler_reader('scaller_encoder.pkl')
     scalled_data = scaller.transform(user_input)
     pridict = model.predict(scalled_data)  
     if pridict[0][0]*100 > 50:
